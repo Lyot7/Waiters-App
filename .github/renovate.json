@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "schedule:weekends"],
+  "labels": ["dependencies"],
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "groupName": "React",
+      "matchPackagePatterns": ["^react", "^@types/react"]
+    },
+    {
+      "groupName": "Next.js",
+      "matchPackagePatterns": ["^next", "^eslint-config-next"]
+    },
+    {
+      "groupName": "Testing",
+      "matchPackagePatterns": ["vitest", "playwright", "@testing-library"]
+    },
+    {
+      "groupName": "Prisma",
+      "matchPackagePatterns": ["^prisma", "^@prisma"]
+    },
+    {
+      "groupName": "Radix UI",
+      "matchPackagePatterns": ["^@radix-ui"]
+    },
+    {
+      "groupName": "ESLint",
+      "matchPackagePatterns": ["^eslint", "^@typescript-eslint"]
+    }
+  ]
+}
