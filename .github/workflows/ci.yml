@@ -204,4 +204,3 @@ jobs:
 
       - name: Build application
         run: bun run build
-
