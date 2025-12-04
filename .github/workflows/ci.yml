@@ -84,6 +84,8 @@ jobs:
           --health-retries 5
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/waiters_app
+      BETTER_AUTH_SECRET: ci-test-secret-key-for-tests-32chars!
+      BETTER_AUTH_URL: http://localhost:3000
     steps:
       - uses: actions/checkout@v4
 
@@ -93,6 +95,12 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: bun run db:generate
+
+      - name: Push database schema
+        run: bun run db:push
 
       - name: Run tests with coverage
         run: bun run test:coverage
@@ -123,6 +131,8 @@ jobs:
           --health-retries 5
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/waiters_app
+      BETTER_AUTH_SECRET: ci-test-secret-key-for-e2e-32chars!
+      BETTER_AUTH_URL: http://localhost:3000
     steps:
       - uses: actions/checkout@v4
 
@@ -132,6 +142,12 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: bun run db:generate
+
+      - name: Push database schema
+        run: bun run db:push
 
       - name: Install Playwright browsers
         run: bunx playwright install --with-deps chromium
@@ -168,6 +184,8 @@ jobs:
           --health-retries 5
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/waiters_app
+      BETTER_AUTH_SECRET: ci-test-secret-key-for-build-32char!
+      BETTER_AUTH_URL: http://localhost:3000
     steps:
       - uses: actions/checkout@v4
 
@@ -180,6 +198,9 @@ jobs:
 
       - name: Generate Prisma Client
         run: bun run db:generate
+
+      - name: Push database schema
+        run: bun run db:push
 
       - name: Build application
         run: bun run build
