@@ -22,6 +22,9 @@ parsers:
       macro: no
 
 comment:
-  layout: "reach,diff,flags,files,footer"
+  layout: "diff, flags, files"
   behavior: default
-  require_changes: no
+  require_changes: true
+  require_base: false
+  require_head: true
+  hide_project_coverage: false
