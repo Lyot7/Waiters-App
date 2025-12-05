@@ -1,0 +1,53 @@
+name: Linear Integration
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  check-linear-issue:
+    name: Check Linear Issue Reference
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for Linear issue reference
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const title = pr.title || '';
+            const body = pr.body || '';
+            const branch = pr.head.ref || '';
+
+            // Pattern for Linear issue: WAI-XXX (customize prefix for your team)
+            const linearPattern = /WAI-\d+/i;
+
+            const hasInTitle = linearPattern.test(title);
+            const hasInBody = linearPattern.test(body);
+            const hasInBranch = linearPattern.test(branch);
+
+            if (hasInTitle || hasInBody || hasInBranch) {
+              console.log('✅ Linear issue reference found');
+
+              // Extract issue ID for logging
+              const match = (title + ' ' + body + ' ' + branch).match(linearPattern);
+              if (match) {
+                console.log(`📋 Linear Issue: ${match[0].toUpperCase()}`);
+              }
+              return;
+            }
+
+            // Skip check for certain PR types
+            const skipPrefixes = ['chore(deps)', 'chore(release)', 'renovate/', 'dependabot/'];
+            const shouldSkip = skipPrefixes.some(prefix =>
+              title.toLowerCase().startsWith(prefix) || branch.toLowerCase().startsWith(prefix)
+            );
+
+            if (shouldSkip) {
+              console.log('⏭️ Skipping Linear check for automated PR');
+              return;
+            }
+
+            // Warn but don't fail - Linear reference is recommended but not required
+            core.warning(
+              'No Linear issue reference found. Consider adding WAI-XXX to your PR title, description, or branch name.'
+            );
