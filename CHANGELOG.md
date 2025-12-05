@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/Lyot7/Waiters-App/compare/v1.0.2...v1.0.3) (2025-12-05)
+
+### Bug Fixes
+
+- **deps:** update dependency lucide-react to ^0.556.0 ([#13](https://github.com/Lyot7/Waiters-App/issues/13)) ([3f0e9fb](https://github.com/Lyot7/Waiters-App/commit/3f0e9fb7036149d05038669f7c69c6da24daba78))
+
 ## [1.0.2](https://github.com/Lyot7/Waiters-App/compare/v1.0.1...v1.0.2) (2025-12-05)
 
 ### Bug Fixes
