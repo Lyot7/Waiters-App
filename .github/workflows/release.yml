@@ -13,11 +13,33 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: waiters_app
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/waiters_app
+      BETTER_AUTH_SECRET: ci-release-secret-key-32-chars!!
+      BETTER_AUTH_URL: http://localhost:3000
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -28,6 +50,9 @@ jobs:
 
       - name: Generate Prisma Client
         run: bun run db:generate
+
+      - name: Push database schema
+        run: bun run db:push
 
       - name: Build application
         run: bun run build
