@@ -282,3 +282,11 @@ Vérifier que :
 1. L'intégration GitHub est configurée dans Linear
 2. Le commit contient `Closes WAI-XXX` ou `Fixes WAI-XXX`
 3. La branche contient `WAI-XXX`
+
+---
+
+## Historique des validations
+
+| Date       | Issue | Description                                 |
+| ---------- | ----- | ------------------------------------------- |
+| 2025-12-05 | WAI-6 | Validation de l'intégration Linear ↔ GitHub |
