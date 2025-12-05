@@ -1,3 +1,9 @@
+# [1.2.0](https://github.com/Lyot7/Waiters-App/compare/v1.1.0...v1.2.0) (2025-12-05)
+
+### Features
+
+- **WAI-6:** validate Linear integration ([#18](https://github.com/Lyot7/Waiters-App/issues/18)) ([5cc080f](https://github.com/Lyot7/Waiters-App/commit/5cc080f9278c955f6fad4548944b269958ecc1fa))
+
 # [1.1.0](https://github.com/Lyot7/Waiters-App/compare/v1.0.3...v1.1.0) (2025-12-05)
 
 ### Features
