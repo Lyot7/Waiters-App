@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/Lyot7/Waiters-App/compare/v1.0.3...v1.1.0) (2025-12-05)
+
+### Features
+
+- add Linear integration workflow and PR template ([#15](https://github.com/Lyot7/Waiters-App/issues/15)) ([6a35aea](https://github.com/Lyot7/Waiters-App/commit/6a35aeaa64871025b54e09c7fbd4e3d115648767))
+
 ## [1.0.3](https://github.com/Lyot7/Waiters-App/compare/v1.0.2...v1.0.3) (2025-12-05)
 
 ### Bug Fixes
